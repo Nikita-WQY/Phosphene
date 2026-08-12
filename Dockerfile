@@ -28,7 +28,7 @@ COPY --from=builder --chown=node:node /app/drizzle ./drizzle
 COPY --chown=root:root docker-entrypoint.sh /usr/local/bin/phosphene-entrypoint
 RUN chmod 0755 /usr/local/bin/phosphene-entrypoint
 
-EXPOSE 8080
+EXPOSE 7860
 VOLUME ["/data"]
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD node -e "fetch('http://127.0.0.1:' + process.env.PORT + '/healthz').then(r => { if (!r.ok) process.exit(1) }).catch(() => process.exit(1))"
